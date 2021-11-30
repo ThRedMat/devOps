@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-db
+  labels:
+    app: redis-db
+    tier: redis
+spec:
+  selector:
+    matchLabels:
+      app: redis-db
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: redis-db
+    spec:
+      containers:
+        - name: redis-db
+          image: redis:alpine
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 6379
+          resources:
+            limits:
+              cpu: 100m
+              memory: 138Mi
+            requests:
+              cpu: 100m
+              memory: 138Mi

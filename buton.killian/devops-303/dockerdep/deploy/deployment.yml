@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-303
+  labels:
+    app: devops-303
+    tier: devops
+spec:
+  selector:
+    matchLabels:
+      app: devops-303
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: devops-303
+    spec:
+      containers:
+        - name: devops-303
+          image: library/devops-303_app:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8884
+          env:
+            - name: REDIS_HOST
+              value: "redis-db"
+            - name: REDIS_PORT
+              value: "6379"
+          resources:
+            limits:
+              cpu: 100m
+              memory: 138Mi
+            requests:
+              cpu: 100m
+              memory: 138Mi

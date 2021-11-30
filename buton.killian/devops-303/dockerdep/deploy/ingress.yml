@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: devops-303
+spec:
+  rules:
+    - host: devops-3030.buton.killian
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: devops-303
+                port:
+                  number: 80
+          - path: /service
+            pathType: Prefix
+            backend:
+              service:
+                name: service
+                port:
+                  number: 8080
